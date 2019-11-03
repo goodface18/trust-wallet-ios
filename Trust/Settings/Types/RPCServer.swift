@@ -9,7 +9,7 @@ enum RPCServer {
     case classic
     case callisto
     case gochain
-
+    case aion
     var id: String {
         switch self {
         case .main: return "ethereum"
@@ -17,6 +17,7 @@ enum RPCServer {
         case .classic: return "classic"
         case .callisto: return "callisto"
         case .gochain: return "gochain"
+        case .aion: return "aion"
         }
     }
 
@@ -27,6 +28,7 @@ enum RPCServer {
         case .classic: return 61
         case .callisto: return 820
         case .gochain: return 60
+        case .aion: return 425
         }
     }
 
@@ -37,6 +39,7 @@ enum RPCServer {
         case .classic: return EthereumAddress(string: "0x000000000000000000000000000000000000003D")!
         case .callisto: return EthereumAddress(string: "0x0000000000000000000000000000000000000334")!
         case .gochain: return EthereumAddress(string: "0x00000000000000000000000000000000000017aC")!
+        case .aion: return EthereumAddress(string: "0x00000000000000000000000000000000000001A9")!
         }
     }
 
@@ -44,6 +47,7 @@ enum RPCServer {
         switch self {
         case .main: return false
         case .poa, .classic, .callisto, .gochain: return true
+        case .aion: return true
         }
     }
 
@@ -54,6 +58,7 @@ enum RPCServer {
         case .classic: return "Ethereum Classic"
         case .callisto: return "Callisto"
         case .gochain: return "GoChain"
+        case .aion: return "Aion"
         }
     }
 
@@ -68,6 +73,7 @@ enum RPCServer {
         case .callisto: return "CLO"
         case .poa: return "POA"
         case .gochain: return "GO"
+        case .aion: return "Aion"
         }
     }
 
@@ -83,6 +89,7 @@ enum RPCServer {
             case .callisto: return "https://clo-geth.0xinfra.com"
             case .poa: return "https://poa.infura.io"
             case .gochain: return "https://rpc.gochain.io"
+            case .aion: return "https://aion.pokt.network"
             }
         }()
         return URL(string: urlString)!
@@ -96,6 +103,7 @@ enum RPCServer {
             case .callisto: return "https://callisto.trustwalletapp.com"
             case .poa: return "https://poa.trustwalletapp.com"
             case .gochain: return "https://gochain.trustwalletapp.com"
+            case .aion: return "https://aion.trustwalletapp.com"
             }
         }()
         return URL(string: urlString)!
@@ -108,12 +116,16 @@ enum RPCServer {
             return EthereumAddress(string: "0x314159265dd8dbb310642f98f50c066173c1259b")!
         case .classic, .poa, .callisto, .gochain:
             return EthereumAddress.zero
+        case .aion:
+            return EthereumAddress.zero
         }
     }
 
     var openseaPath: String {
         switch self {
         case .main, .classic, .poa, .callisto, .gochain: return Constants.dappsOpenSea
+        case .aion:
+            return Constants.dappsOpenSea
         }
     }
 
@@ -132,6 +144,7 @@ enum RPCServer {
         case .callisto: return Coin.callisto
         case .poa: return Coin.poa
         case .gochain: return Coin.gochain
+        case .aion: return Coin.aion
         }
     }
 }
